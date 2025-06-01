@@ -19,5 +19,5 @@ from django.urls import path, include # Importez 'include'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pagne_elegance_app.urls')), # Incluez les URLs de votre application
+
 ]

@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pagne_elegance_app', # Votre nouvelle application
+    'catalog',
 ]
 
 MIDDLEWARE = [
