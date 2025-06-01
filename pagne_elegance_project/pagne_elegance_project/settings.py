@@ -55,7 +55,7 @@ ROOT_URLCONF = 'pagne_elegance_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'pagne_elegance_app' / 'templates'], # Chemin vers vos templates
+        'DIRS': [BASE_DIR / 'templates/pagne' / 'templates'], # Chemin vers vos templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

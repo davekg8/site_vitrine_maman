@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>African Clothing Store</title>
+    <link rel="stylesheet" href="{% static 'catalog/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'catalog:home' %}">African Clothing Store</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'catalog:product_list_by_category' 'pagne' %}">Pagne</a></li>
+                <li><a href="{% url 'catalog:product_list_by_category' 'clothing' %}">Clothing</a></li>
+                <li><a href="{% url 'catalog:product_list' %}">All Products</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 African Clothing Store</p>
+    </footer>
+</body>
+</html>
