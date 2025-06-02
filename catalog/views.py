@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Product
 
 def index(request):
-    featured_products = Product.objects.all()
+    featured_products = Product.objects.all().order_by('-created_at')[:3]
     return  render(request, 'catalog/index.html',{'products':featured_products})
 
 def product_list(request, category=None):
@@ -15,3 +15,9 @@ def product_list(request, category=None):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, 'catalog/product_detail.html', {'product': product})
+
+def contact(request):
+    return render(request, 'catalog/contact.html')
+
+def contact_submit(request):
+    pass
