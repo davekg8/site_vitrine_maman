@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="accueil" class="relative h-screen bg-cover bg-center flex items-center justify-center text-center"
+        style="background-image: url('https://www.vice.com/wp-content/uploads/sites/2/2021/03/1617021338538-eva-blue-sfpokp6-2ea-unsplash-scaled.jpeg?w=1024');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-white p-8 rounded-lg max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Découvrez la Beauté Authentique du Pagne
+            </h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200">
+                Des créations uniques pour sublimer chaque femme, inspirées par la richesse de l'Afrique.
+            </p>
+            <a href="#produits" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 animate-fade-in-up delay-40">
+                Explorer nos Collections
+            </a>
+        </div>
+    </section>
+{% endblock %}

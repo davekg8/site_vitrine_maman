@@ -1,0 +1,41 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+	<head>
+    <title>{% block title %}Christ Fashion{% endblock %}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+<body class="bg-base-100 text-base-content min-h-screen flex flex-col">
+
+    <div class="navbar bg-white text-primary-content shadow-sm">
+      <div class="container mx-auto px-4">
+        <div class="flex-1">
+          <a href={% url "catalog:index" %} class="text-2xl font-bold text-secondary ml-4">Pagne & Élégance</a>
+        </div>
+        <div class="flex-none">
+          <ul class="menu menu-horizontal px-1 space-x-2 text-gray-800 text-md font-medium">
+            <li><a href={% url "catalog:index" %} class="hover:text-primary focus:text-primary">Accueil</a></li>
+            <li><a href={% url "catalog:product_list" %} class="hover:text-primary focus:text-primary">Produits</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu principal -->
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Pied de page -->
+    <footer class="bg-neutral text-neutral-content py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; {{ year|default:"2025" }} Pagne Africain. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
