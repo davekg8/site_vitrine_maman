@@ -1,19 +1,99 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section id="accueil" class="relative h-screen bg-cover bg-center flex items-center justify-center text-center"
-        style="background-image: url('https://www.vice.com/wp-content/uploads/sites/2/2021/03/1617021338538-eva-blue-sfpokp6-2ea-unsplash-scaled.jpeg?w=1024');">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
-        <div class="relative z-10 text-white p-8 rounded-lg max-w-3xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">
-                Découvrez la Beauté Authentique du Pagne
+
+<section id="index">
+    <div class="relative overflow-hidden">
+      {# Hero Image #}
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.pexels.com/photos/6192591/pexels-photo-6192591.jpeg"
+          alt="African Fashion"
+          class="w-full h-full object-cover object-center"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-amber-950/80 to-transparent"></div>
+      </div>
+
+      {# Content #}
+      <div class="relative z-10 min-h-[90vh] flex items-center">
+        <div class="container mx-auto px-4 md:px-6 py-20">
+          <div class="max-w-xl">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-titre leading-tight">
+              Authentic African <span class="text-orange-500">Fashion</span> & Fabrics
             </h1>
-            <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up delay-200">
-                Des créations uniques pour sublimer chaque femme, inspirées par la richesse de l'Afrique.
+            <p class="text-lg md:text-xl text-amber-100 mb-8 leading-relaxed">
+              Discover the vibrant beauty of African prints and designs.
+              Our collection celebrates the rich cultural heritage with
+              modern, elegant styles for the contemporary woman.
             </p>
-            <a href="#produits" class="bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105 animate-fade-in-up delay-40">
-                Explorer nos Collections
-            </a>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="{% url 'catalog:index' %}" {# Assuming 'products' is a named URL in your Django urls.py #}
+                class="btn btn-primary bg-orange-600 hover:bg-orange-700 text-white"
+              >
+                Shop Collection
+              </a>
+              <a
+                href="{% url 'catalog:index' %}" {# Assuming 'about' is a named URL in your Django urls.py #}
+                class="btn btn-outline btn-wide border-2 border-white text-white hover:bg-white/10"
+              >
+                Our Story
+              </a>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+
+      {# Decorative Element #}
+      <div class="absolute bottom-0 right-0 w-1/3 h-24 bg-amber-900 transform -skew-x-12 translate-x-10"></div>
+    </div>
+</section>
+
+<section id="produits" class="py-16 bg-white">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold font-serif text-amber-900 mb-4">Nos Produits</h2>
+      <div class="w-24 h-1 bg-orange-600 mx-auto"></div>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Découvrez notre sélection de produits <br>
+        Des pagnes et des vêtements juste pour vous.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-8">
+      {% for product in products %} {# Loop through the products passed from the Django view #}
+        <a href="{% url 'catalog:product_detail' product.id %}" class="group"> {# Use Django's URL tag for dynamic linking #}
+          <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 card"> {# Added 'card' class for DaisyUI #}
+            <figure class="h-72 overflow-hidden"> {# DaisyUI 'figure' is good for images within cards #}
+              <img
+                src="{{ product.cover.url }}" {# Use Django template variable #}
+                alt="{{ product.name }}"
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+            </figure>
+            <div class="card-body p-4">
+              <h3 class="card-title text-lg font-medium text-gray-900 mb-1">
+                {{ product.name }}
+              </h3>
+              <p class="text-gray-500 text-sm mb-3">{{ product.category }}</p>
+              <div class="flex justify-between items-center">
+                <span class="text-orange-600 font-bold">{{ product.price}} Fcfa</span> {# Format price #}
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-10">
+      <a
+        href="{% url 'catalog:product_list' %}" {# Link to the all products page #}
+        class="inline-flex items-center px-6 py-3 border-2 border-amber-900 text-amber-900 font-medium rounded-md hover:bg-amber-900 hover:text-white transition duration-300 btn btn-outline btn-wide" {# Added DaisyUI button classes #}
+      >
+        View All Products
+      </a>
+    </div>
+  </div>
+</section>
+
 {% endblock %}

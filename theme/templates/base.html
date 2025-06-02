@@ -1,6 +1,6 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr" data-theme="christFashion">
 	<head>
     <title>{% block title %}Christ Fashion{% endblock %}</title>
 		<meta charset="UTF-8">
@@ -11,15 +11,16 @@
 
 <body class="bg-base-100 text-base-content min-h-screen flex flex-col">
 
-    <div class="navbar bg-white text-primary-content shadow-sm">
-      <div class="container mx-auto px-4">
-        <div class="flex-1">
-          <a href={% url "catalog:index" %} class="text-2xl font-bold text-secondary ml-4">Pagne & Élégance</a>
+    <div class="navbar bg-white text-primary shadow-sm">
+      <div class="container mx-auto px-4 flex justify-between items-center"> {# <-- Ajout de flex, justify-between et items-center #}
+        <div class="flex-none">
+          <a href="{% url 'catalog:index' %}" class="text-2xl font-bold font-titre text-primary ml-4">Christ<span class ="text-secondary">Fashion</span></a>
         </div>
         <div class="flex-none">
           <ul class="menu menu-horizontal px-1 space-x-2 text-gray-800 text-md font-medium">
-            <li><a href={% url "catalog:index" %} class="hover:text-primary focus:text-primary">Accueil</a></li>
-            <li><a href={% url "catalog:product_list" %} class="hover:text-primary focus:text-primary">Produits</a></li>
+            <li><a href="{% url 'catalog:index' %}" class="hover:text-primary focus:text-primary">Accueil</a></li>
+            <li><a href="{% url 'catalog:product_list' %}" class="hover:text-primary focus:text-primary">Produits</a></li>
+            <li><a href="{% url 'catalog:contact' %}" class="hover:text-primary focus:text-primary">Contact</a></li>
           </ul>
         </div>
       </div>
@@ -33,7 +34,7 @@
     <!-- Pied de page -->
     <footer class="bg-neutral text-neutral-content py-6">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; {{ year|default:"2025" }} Pagne Africain. Tous droits réservés.</p>
+            <p>&copy; {{ year|default:"2025" }} Christ Fashion. Tous droits réservés.</p>
         </div>
     </footer>
 

@@ -19,6 +19,8 @@ class Product(models.Model):
     description = models.TextField(verbose_name="Description du produit")
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name="Catégorie du produit", default=1)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
