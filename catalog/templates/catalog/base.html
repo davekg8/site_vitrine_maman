@@ -1,0 +1,37 @@
+{% load tailwind_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Boutique de Pagne Africain{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+</head>
+<body class="bg-base-100 text-base-content min-h-screen flex flex-col">
+
+    <!-- Barre de navigation -->
+    <header class="bg-primary text-primary-content shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{% url 'catalog:index' %}" class="text-2xl font-bold">Pagne Africain</a>
+            <nav class="space-x-4">
+                <a href="{% url 'catalog:product_list' %}" class="btn btn-ghost">Produits</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        {% block content %}
+        <!-- Le contenu de chaque page s'affichera ici -->
+        {% endblock %}
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="bg-neutral text-neutral-content py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; {{ year|default:"2025" }} Pagne Africain. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
