@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mx-auto p-4 md:p-8 lg:p-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+
+            <div class="lg:w-1/2 flex justify-center items-start">
+                <div class="relative w-full max-w-md bg-base-200 rounded-box shadow-xl overflow-hidden">
+                    {% if product.cover %}
+                        <img src="{{ product.cover.url }}"
+                             alt="{{ product.name }}"
+                             class="w-full h-auto object-cover rounded-box"/>
+                    {% else %}
+                        <img src="https://img.daisyui.com/images/stock/photo-1606107555195-edcd0c8c.jpg"
+                             alt="Image par défaut"
+                             class="w-full h-auto object-cover rounded-box"/>
+                    {% endif %}
+
+                    {% if product.tag %} {# Assurez-vous que votre modèle 'Product' a un champ 'tag' #}
+                    <div class="badge bg-amber-100 text-primary absolute bottom-4 right-4 p-3 text-sm font-bold rounded-lg">
+                        {{ product.tag }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 flex flex-col gap-4">
+
+                {% if product.category %} {# Assurez-vous que votre modèle 'Product' a un champ 'category' #}
+                <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                    {{ product.category.name }}
+                </div>
+                {% endif %}
+
+                <h1 class="text-4xl font-bold text-base-content">{{ product.name }}</h1>
+
+                <p class="text-lg text-gray-600">{{ product.description }}</p>
+
+                {% if product.price %} {# Assurez-vous que votre modèle 'Product' a un champ 'price' #}
+                <p class="text-3xl font-bold text-primary mb-2">
+                    {{ product.price|floatformat:0 }} Fcfa
+                    {% if product.old_price %} {# Optionnel: si vous avez un prix barré #}
+                    <span class="text-xl text-gray-400 line-through ml-2">{{ product.old_price }} Fcfa</span>
+                    {% endif %}
+                </p>
+                {% endif %}
+                <a href="{% url 'catalog:contact' %}" class="text-semibold btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl bg-base-200 shadow-md p-4 rounded-box">
+                    Commander
+                </a>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                    <div class="card bg-base-200 shadow-md p-4 rounded-box">
+                        <h3 class="font-semibold text-lg mb-1">Livraison Rapide</h3>
+                        <p class="text-sm text-gray-600">Expédié sous 24h</p>
+                    </div>
+                    <div class="card bg-base-200 shadow-md p-4 rounded-box">
+                        <h3 class="font-semibold text-lg mb-1">Matériaux Durables</h3>
+                        <p class="text-sm text-gray-600">Conçu pour durer</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

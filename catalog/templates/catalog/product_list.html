@@ -13,9 +13,32 @@
     </div>
   </div>
 
+  <div class="sticky top-16 bg-white z-20 shadow-sm">
+    <div class="container mx-auto px-4 md:px-6 py-4">
+      <div class="flex flex-wrap items-center justify-center gap-2 md:gap-4">
+        {% for category in categories %}
+          <a href="{% url 'catalog:product_list' %}?category={{ category.slug }}"
+             class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+             {% if active_category == category.slug %}
+               bg-amber-900 text-white
+             {% else %}
+               bg-neutral-100 text-gray-700 hover:bg-neutral-200
+             {% endif %}">
+            {{ category.name }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
 <div class="container mx-auto px-4 md:px-6 py-16 bg-white">
+    {% if not filtered_products %}
+      <div class="text-center py-12">
+        <p class="text-xl text-gray-600">No products found in this category.</p>
+      </div>
+    {% else %}
     <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-8">
-      {% for product in products %} {# Loop through the products passed from the Django view #}
+      {% for product in filtered_products %} {# Loop through the products passed from the Django view #}
         <a href="{% url 'catalog:product_detail' product.id %}" class="group"> {# Use Django's URL tag for dynamic linking #}
           <div class="bg-neutral-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 card"> {# Added 'card' class for DaisyUI #}
             <figure class="h-72 overflow-hidden"> {# DaisyUI 'figure' is good for images within cards #}
@@ -31,13 +54,17 @@
               </h3>
               <p class="text-gray-500 text-sm mb-3">{{ product.category }}</p>
               <div class="flex justify-between items-center">
-                <span class="text-orange-600 font-bold">{{ product.price}} Fcfa</span> {# Format price #}
+                <span class="text-orange-600 font-bold">{{ product.price}} Fcfa</span>
+                <span class="text-xs px-2 py-1 bg-amber-100 text-primary rounded-lg">
+                      {{ product.tag}}
+                </span>
               </div>
             </div>
           </div>
         </a>
       {% endfor %}
     </div>
+    {% endif %}
 </div>
 
 
