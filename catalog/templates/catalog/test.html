@@ -1,0 +1,68 @@
+        <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+          <h2 class="text-2xl font-bold text-amber-900 mb-6">Envoyez-nous un message</h2>
+          <form method="post" > {# IMPORTANT: Django form handling #}
+            {% csrf_token %} {# Django's security token for forms #}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
+                  Votre Nom
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name" {# Added name attribute for Django forms #}
+                  class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" {# DaisyUI input class #}
+                  placeholder="Nom Complet"
+                  required {# Added required attribute #}
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+                  Votre Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email" {# Added name attribute #}
+                  class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" {# DaisyUI input class #}
+                  placeholder="email@example.com"
+                  required {# Added required attribute #}
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">
+                Sujet
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject" {# Added name attribute #}
+                class="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" {# DaisyUI input class #}
+                placeholder="Comment pouvons-nous vous aider ?"
+                required {# Added required attribute #}
+              />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">
+                Votre Message
+              </label>
+              <textarea
+                id="message"
+                name="message" {# Added name attribute #}
+                rows="6"
+                class="textarea textarea-bordered w-full h-32 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" {# DaisyUI textarea class #}
+                placeholder="Dites-nous ce dont vous avez besoin..."
+                required {# Added required attribute #}
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary w-full flex items-center justify-center bg-orange-600 hover:bg-orange-700 text-white border-0" {# DaisyUI button classes + custom color override #}
+            >
+              {# Using Lucide-React Send icon SVG #}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send mr-2"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M9 15l-6 6"/></svg>
+              Envoyer le Message
+            </button>
+          </form>
+        </div>
