@@ -44,7 +44,7 @@
                     {% endif %}
                 </p>
                 {% endif %}
-                <a href="{% url 'catalog:contact' %}" class="text-semibold btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl bg-base-200 shadow-md p-4 rounded-box">
+                <a href="https://wa.me/22890038261?text=Bonjour, je suis intéressé par le produit {{ product.name }}. Voici le lien vers le produit : {{ request.build_absolute_uri }}" class="text-semibold btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl bg-base-200 shadow-md p-4 rounded-box" target="_blank">
                     Commander
                 </a>
 
